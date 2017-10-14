@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/mp_small"
+    android:paddingEnd="@dimen/mp_small"
+    android:paddingLeft="0dp"
+    android:paddingRight="@dimen/mp_small"
+    android:paddingStart="0dp"
+    android:paddingTop="@dimen/mp_small">
+
+    <ImageView
+        android:id="@+id/imgOrigin"
+        android:layout_width="@dimen/small_img_size"
+        android:layout_height="@dimen/small_img_size"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="@dimen/mp_5"
+        android:layout_marginRight="@dimen/mp_small"
+        android:layout_marginTop="@dimen/mp_5"
+        android:src="@drawable/ic_origin"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/imgPath"
+        android:layout_width="@dimen/small_img_size"
+        android:layout_height="@dimen/mp_small"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imgOrigin"
+        android:layout_marginRight="@dimen/mp_small"
+        android:src="@drawable/ic_progress"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/imgDestination"
+        android:layout_width="@dimen/small_img_size"
+        android:layout_height="@dimen/small_img_size"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imgPath"
+        android:layout_marginBottom="@dimen/mp_5"
+        android:layout_marginRight="@dimen/mp_small"
+        android:layout_marginTop="@dimen/mp_5"
+        android:src="@drawable/ic_destination"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/btnReverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/mp_normal"
+        android:layout_marginRight="@dimen/mp_small"
+        android:background="@drawable/ic_reverse"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvOrigin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_bar_height"
+        android:layout_toLeftOf="@+id/btnReverse"
+        android:layout_toRightOf="@+id/imgOrigin"
+        android:background="@drawable/bg_green_search_view"
+        android:ellipsize="marquee"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/mp_small"
+        android:paddingRight="@dimen/mp_small"
+        android:text="@string/choose_origin"
+        android:textColor="@color/primary_dark"
+        tools:text="Siltakuja 2" />
+
+    <TextView
+        android:id="@+id/tvDestination"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_bar_height"
+        android:layout_below="@+id/tvOrigin"
+        android:layout_marginTop="@dimen/mp_small"
+        android:layout_toLeftOf="@+id/btnReverse"
+        android:layout_toRightOf="@+id/imgOrigin"
+        android:background="@drawable/bg_green_search_view"
+        android:ellipsize="marquee"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/mp_small"
+        android:paddingRight="@dimen/mp_small"
+        android:text="@string/choose_destination"
+        android:textColor="@color/primary_dark"
+        tools:text="Vanha Maantie 6" />
+</RelativeLayout>

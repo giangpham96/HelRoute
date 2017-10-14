@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myLocation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:padding="@dimen/mp_normal">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/thumbnail"
+        android:layout_height="@dimen/thumbnail"
+        android:layout_centerVertical="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_my_location"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/mp_normal"
+        android:layout_toRightOf="@+id/icon"
+        android:ellipsize="marquee"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="@string/my_location"
+        android:textColor="@color/primary_text" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLabel"
+        android:layout_marginLeft="@dimen/mp_normal"
+        android:layout_marginTop="@dimen/mp_x_small"
+        android:layout_toRightOf="@+id/icon"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/small_text_size"
+        tools:text="Siltakuja 2, Espoo, Finland" />
+</RelativeLayout>

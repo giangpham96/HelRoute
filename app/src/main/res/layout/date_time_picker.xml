@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvLeaving"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_selected"
+            android:gravity="center"
+            android:padding="@dimen/mp_x_small"
+            android:text="@string/leave_at"
+            android:textColor="@color/accent" />
+
+        <TextView
+            android:id="@+id/tvArriving"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/mp_x_small"
+            android:text="@string/arrive_by"
+            android:textColor="#88ffffff" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cardview_light_background"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/mp_small"
+        android:paddingRight="@dimen/mp_small">
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_calendar"
+            android:drawablePadding="@dimen/mp_small"
+            android:gravity="center_vertical"
+            android:padding="@dimen/mp_small"
+            android:textColor="@color/accent"
+            tools:text="Today" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_time"
+            android:drawablePadding="@dimen/mp_small"
+            android:gravity="center_vertical"
+            android:padding="@dimen/mp_small"
+            android:textColor="@color/accent"
+            tools:text="12:45" />
+    </LinearLayout>
+</LinearLayout>

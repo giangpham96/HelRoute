@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="leo.me.la.finroute.searchPlaces.SearchPlaceActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@color/cardview_light_background" />
+
+        <include layout="@layout/search_edit_text" />
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/places_list_view" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/annouce"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/mp_normal"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/mp_normal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/imgAnnounce"
+                android:layout_width="@dimen/normal_img_size"
+                android:layout_height="@dimen/normal_img_size"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/ic_city" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imgAnnounce">
+
+                <TextView
+                    android:id="@+id/tvAnnounce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/mp_x_small"
+                    android:layout_marginLeft="@dimen/mp_normal"
+                    android:textColor="@color/accent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="Error occurs!" />
+
+                <TextView
+                    android:id="@+id/tvSubAnnouce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvAnnounce"
+                    android:layout_marginLeft="@dimen/mp_normal"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/small_text_size"
+                    tools:text="Tap to retry!" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>

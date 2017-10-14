@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mp_normal">16dp</dimen>
+    <dimen name="mp_small">8dp</dimen>
+    <dimen name="small_img_size">20dp</dimen>
+    <dimen name="mp_5">5dp</dimen>
+    <dimen name="search_bar_height">30dp</dimen>
+    <dimen name="radius_extra_small">2dp</dimen>
+    <dimen name="mp_x_small">4dp</dimen>
+    <dimen name="thumbnail">32dp</dimen>
+    <dimen name="normal_img_size">40dp</dimen>
+    <dimen name="small_icon_size">8dp</dimen>
+    <dimen name="stop_name_max_width">140dp</dimen>
+    <dimen name="small_text_size">12sp</dimen>
+    <dimen name="large_icon_size">24dp</dimen>
+    <dimen name="min_drawer_size">240dp</dimen>
+    <dimen name="icon_size">16dp</dimen>
+    <dimen name="mp_xx_small">2dp</dimen>
+</resources>

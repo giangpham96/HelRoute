@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/mp_small"
+    android:paddingTop="@dimen/mp_small">
+
+    <ImageView
+        android:layout_width="@dimen/small_icon_size"
+        android:layout_height="@dimen/small_icon_size"
+        android:layout_marginEnd="@dimen/mp_small"
+        android:layout_marginRight="@dimen/mp_small"
+        android:src="@drawable/ic_stop_point"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvStopName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/mp_x_small"
+        android:layout_marginStart="@dimen/mp_x_small"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="1"
+        android:maxWidth="@dimen/stop_name_max_width"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textColor="#000"
+        android:textSize="@dimen/small_text_size"
+        tools:text="Kilo" />
+
+    <TextView
+        android:id="@+id/tvStopCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/mp_x_small"
+        android:layout_marginStart="@dimen/mp_x_small"
+        android:background="@drawable/bg_sub_stop_code"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/mp_x_small"
+        android:paddingRight="@dimen/mp_x_small"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/small_text_size"
+        tools:text="E6106" />
+</LinearLayout>

@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+apply plugin: 'com.apollographql.android'
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "leo.me.la.finroute"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+apollo {
+    customTypeMapping['Long'] = "java.lang.Long"
+}
+ext {
+    supportLibraryVersion = '26.1.0'
+    retrofitVersion = '2.3.0'
+    gmsVersion = '11.2.2'
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude module: 'jsr305'
+    })
+    //support libraries
+    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+
+    //retrofit
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+
+    //butterknife
+    compile 'com.jakewharton:butterknife:8.8.1'
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    //gson
+    compile 'com.google.code.gson:gson:2.8.1'
+
+    //okhttp
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+
+    //dagger
+    compile 'com.google.dagger:dagger:2.11'
+
+    //rx
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.3.0'
+
+    //gms
+    compile "com.google.android.gms:play-services-location:$gmsVersion"
+    compile "com.google.android.gms:play-services-maps:$gmsVersion"
+
+    //apollo
+    compile 'com.apollographql.apollo:apollo-rx-support:0.4.1'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+}

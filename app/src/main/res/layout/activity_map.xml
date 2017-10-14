@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="leo.me.la.finroute.showMap.MapActivity">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/bottomSheetContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvTotalTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/mp_normal"
+                android:layout_marginLeft="@dimen/mp_normal"
+                android:layout_marginStart="@dimen/mp_normal"
+                android:layout_marginTop="@dimen/mp_normal"
+                android:padding="@dimen/mp_x_small"
+                android:textColor="@color/secondary_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1 h 32 min" />
+
+            <ImageView
+                android:id="@+id/imgSeparator"
+                android:layout_width="@dimen/small_icon_size"
+                android:layout_height="@dimen/small_icon_size"
+                android:layout_marginLeft="@dimen/mp_x_small"
+                android:layout_marginStart="@dimen/mp_x_small"
+                android:layout_toRightOf="@+id/tvTotalTime"
+                android:src="@drawable/ic_dot_separator"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTotalTime"
+                app:layout_constraintLeft_toRightOf="@+id/tvTotalTime"
+                app:layout_constraintTop_toTopOf="@+id/tvTotalTime"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/mp_x_small"
+                android:layout_marginStart="@dimen/mp_x_small"
+                android:layout_toRightOf="@+id/tvTotalTime"
+                android:padding="@dimen/mp_x_small"
+                android:textColor="@color/secondary_text"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTotalTime"
+                app:layout_constraintLeft_toRightOf="@+id/imgSeparator"
+                app:layout_constraintTop_toTopOf="@+id/tvTotalTime"
+                tools:text="3.2 Euro" />
+
+            <ImageView
+                android:id="@+id/imgUp"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="@dimen/mp_normal"
+                android:layout_marginTop="0dp"
+                android:src="@drawable/ic_up"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTotalTime"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvTotalTime"
+                tools:ignore="ContentDescription" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcvLeg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/mp_normal"
+            android:paddingRight="@dimen/mp_normal"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_leg_walk" />
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

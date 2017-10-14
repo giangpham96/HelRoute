@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="@color/cardview_dark_background">
+
+    <LinearLayout
+        android:id="@+id/options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:minWidth="@dimen/min_drawer_size"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/mp_normal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/mp_normal"
+            android:maxLines="1"
+            android:text="@string/transport_modes"
+            android:textColor="@color/primary"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcvMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mp_normal"
+            android:layout_marginRight="@dimen/mp_normal"
+            android:orientation="vertical"
+            android:scrollbars="none"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_transport_mode" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/mp_normal"
+            android:maxLines="1"
+            android:text="@string/transfers"
+            android:textColor="@color/primary"
+            android:textStyle="bold" />
+
+        <!--<android.support.v7.widget.AppCompatSeekBar-->
+        <!--android:id="@+id/sbMaxTrans"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:max="9"-->
+        <!--android:progress="1" />-->
+
+        <LinearLayout
+            android:id="@+id/sbMaxTrans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/mp_normal"
+            android:maxLines="1"
+            android:text="@string/walking_reluctance"
+            android:textColor="@color/primary"
+            android:textStyle="bold" />
+
+        <!--<android.support.v7.widget.AppCompatSeekBar-->
+        <!--android:id="@+id/sbWalkReluctance"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:max="100"-->
+        <!--android:progress="20" />-->
+        <LinearLayout
+            android:id="@+id/sbWalkReluctance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/mp_normal"
+            android:maxLines="1"
+            android:text="@string/walking_speed"
+            android:textColor="@color/primary"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/sbWalkSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <Button
+            android:id="@+id/btnSaveSettings"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@drawable/ic_save"
+            android:drawablePadding="@dimen/mp_small"
+            android:drawableStart="@drawable/ic_save"
+            android:text="@string/save_settings"
+            android:textAllCaps="false"
+            android:textColor="@color/cardview_light_background" />
+    </LinearLayout>
+</ScrollView>

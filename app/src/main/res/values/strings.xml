@@ -1,0 +1,67 @@
+<resources>
+    <array name="transportModes">
+        <item name="mode_bus">BUS</item>
+        <item name="mode_rail">RAIL</item>
+        <item name="mode_tram">TRAM</item>
+        <item name="mode_subway">SUBWAY</item>
+        <item name="mode_ferry">FERRY</item>
+    </array>
+    <array name="transportName">
+        <item name="bus">Bus</item>
+        <item name="commuter_train">Commuter train</item>
+        <item name="tram">Tram</item>
+        <item name="metro">Metro</item>
+        <item name="ferry">Ferry</item>
+    </array>
+    <string name="leave_at">Leaving</string>
+    <string name="arrive_by">Arriving</string>
+
+    <string name="app_name">HelRoute</string>
+    <string name="transport_modes">Transport Modes</string>
+    <string name="walking_reluctance">Walking Reluctance</string>
+    <string name="walking_speed">Walking Speed</string>
+    <string name="routing_type">Routing type</string>
+    <string name="best_route">Best route</string>
+    <string name="least_transfer">Least transfer</string>
+    <string name="least_walking">Least walking</string>
+    <string name="save_settings">Save settings</string>
+    <string name="transfers">Transfers</string>
+    <string name="choose_origin">Choose origin</string>
+    <string name="choose_destination">Choose destination</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="now">Now</string>
+    <string name="enter_location">Enter location</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="recent_search">Recent search</string>
+    <string name="my_location">My location</string>
+    <string name="results">Results</string>
+    <string name="unable_to_get_location">Unable to get location. Please, check your internet connection</string>
+    <string name="remove_recents">Remove recents</string>
+    <string name="options">Options</string>
+    <string name="error_occurs">Error occurs!</string>
+    <string name="tap_to_retry">Tap to retry</string>
+    <string name="empty_search_history">Empty search history!</string>
+    <string name="no_result_found">No result found!</string>
+    <string name="min">min</string>
+    <string name="hour">h</string>
+    <string name="sec">sec</string>
+    <string name="search_itineraries">Search itineraries</string>
+    <string name="euro">&#8364;</string>
+    <string name="earlier">Earlier</string>
+    <string name="later">Later</string>
+    <string name="itinerary">Itinerary</string>
+    <string name="destination">Destination</string>
+    <string name="platform">Platform</string>
+    <string name="walk">Walk</string>
+    <string name="stop">stop(s)</string>
+    <string name="wait">Wait</string>
+    <string name="google_maps_key">AIzaSyCovk0U-oTWHMDyWUGCXjrWSburYWUgMVg</string>
+    <string name="no_disruption">No disruptions</string>
+    <string name="get_location">Tap to get your location</string>
+    <string name="fetch_location">Fetching your location</string>
+    <string name="no_stop">No stop</string>
+    <string name="hide">Hide</string>
+    <string name="show">Show</string>
+</resources>

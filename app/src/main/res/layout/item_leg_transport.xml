@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/transfer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/mp_normal"
+            android:layout_marginTop="@dimen/mp_normal"
+            android:src="@drawable/ic_wait"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintLeft_toLeftOf="@+id/tvStartTransfer"
+            app:layout_constraintRight_toLeftOf="@+id/imgFromTransfer"
+            app:layout_constraintTop_toBottomOf="@+id/tvStartTransfer"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvPlatformTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mp_x_small"
+            android:layout_marginStart="@dimen/mp_x_small"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/mp_x_small"
+            android:paddingRight="@dimen/mp_x_small"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStartTransfer"
+            app:layout_constraintLeft_toRightOf="@+id/tvStopCodeTransfer"
+            app:layout_constraintTop_toTopOf="@+id/tvStartTransfer"
+            tools:text="Platform 3" />
+
+        <TextView
+            android:id="@+id/tvStartTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/mp_x_small"
+            android:textColor="#000"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="11:10" />
+
+        <TextView
+            android:id="@+id/tvContentTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/secondary_text"
+            app:layout_constraintBottom_toBottomOf="@+id/imgTransfer"
+            app:layout_constraintLeft_toLeftOf="@+id/tvFromTransfer"
+            app:layout_constraintTop_toTopOf="@+id/imgTransfer"
+            app:layout_constraintVertical_bias="0.478"
+            tools:text="Wait 10 minutes" />
+
+        <TextView
+            android:id="@+id/tvStopCodeTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mp_x_small"
+            android:layout_marginStart="@dimen/mp_x_small"
+            android:background="@drawable/bg_stop_code"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/mp_x_small"
+            android:paddingRight="@dimen/mp_x_small"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/tvFromTransfer"
+            app:layout_constraintLeft_toRightOf="@+id/tvFromTransfer"
+            app:layout_constraintTop_toTopOf="@+id/tvFromTransfer"
+            tools:text="E6106" />
+
+        <TextView
+            android:id="@+id/viewTransfer"
+            android:layout_width="@dimen/small_icon_size"
+            android:layout_height="0dp"
+            android:background="@drawable/progress_walk"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/imgFromTransfer"
+            app:layout_constraintRight_toRightOf="@+id/imgFromTransfer"
+            app:layout_constraintTop_toBottomOf="@+id/imgFromTransfer" />
+
+        <ImageView
+            android:id="@+id/imgFromTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_origin_walk"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStartTransfer"
+            app:layout_constraintLeft_toRightOf="@+id/tvStartTransfer"
+            app:layout_constraintTop_toTopOf="@+id/tvStartTransfer"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvFromTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mp_x_small"
+            android:layout_marginStart="@dimen/mp_x_small"
+            android:ellipsize="marquee"
+            android:gravity="center_vertical"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:maxWidth="@dimen/stop_name_max_width"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="#000"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStartTransfer"
+            app:layout_constraintLeft_toRightOf="@+id/imgFromTransfer"
+            app:layout_constraintTop_toTopOf="@+id/tvStartTransfer"
+            tools:text="Leppavaara" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/detailSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transfer">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="@dimen/mp_normal"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="@+id/tvFrom"
+            app:layout_constraintTop_toBottomOf="@+id/tvStartTime">
+
+            <TextView
+                android:id="@+id/tvShowHide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/mp_small"
+                android:background="@drawable/bg_show"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:padding="@dimen/mp_xx_small"
+                android:textColor="#fff"
+                tools:text="Show" />
+
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold"
+                tools:text="5 stops" />
+
+            <TextView
+                android:id="@+id/tvDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="@color/secondary_text"
+                android:textSize="@dimen/small_text_size"
+                tools:text=" (12 min)" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/tvStartTime"
+            app:layout_constraintRight_toRightOf="@+id/tvStartTime"
+            app:layout_constraintTop_toBottomOf="@+id/tvStartTime">
+
+            <TextView
+                android:id="@+id/tvCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/mp_normal"
+                android:layout_marginTop="@dimen/mp_normal"
+                android:drawableTop="@drawable/ic_bus_1"
+                android:gravity="center"
+                android:textColor="#000099"
+                android:textSize="@dimen/small_text_size"
+                android:textStyle="bold"
+                tools:text="110T" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mp_x_small"
+            android:layout_marginStart="@dimen/mp_x_small"
+            android:ellipsize="marquee"
+            android:gravity="center_vertical"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:maxWidth="@dimen/stop_name_max_width"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="#000"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStartTime"
+            app:layout_constraintLeft_toRightOf="@+id/imgFrom"
+            app:layout_constraintTop_toTopOf="@+id/tvStartTime"
+            tools:text="Leppavaara" />
+
+        <TextView
+            android:id="@+id/view"
+            android:layout_width="@dimen/small_icon_size"
+            android:layout_height="0dp"
+            android:background="@drawable/progress_bus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/imgFrom"
+            app:layout_constraintRight_toRightOf="@+id/imgFrom"
+            app:layout_constraintTop_toBottomOf="@+id/imgFrom" />
+
+        <ImageView
+            android:id="@+id/imgFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_origin_bus"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStartTime"
+            app:layout_constraintLeft_toRightOf="@+id/tvStartTime"
+            app:layout_constraintTop_toTopOf="@+id/tvStartTime"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvPlatform"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mp_x_small"
+            android:layout_marginStart="@dimen/mp_x_small"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/mp_x_small"
+            android:paddingRight="@dimen/mp_x_small"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStartTime"
+            app:layout_constraintLeft_toRightOf="@+id/tvStopCode"
+            app:layout_constraintTop_toTopOf="@+id/tvStartTime"
+            tools:text="Platform 3" />
+
+        <TextView
+            android:id="@+id/tvStopCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mp_x_small"
+            android:layout_marginStart="@dimen/mp_x_small"
+            android:layout_toRightOf="@+id/tvFrom"
+            android:background="@drawable/bg_stop_code"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/mp_x_small"
+            android:paddingRight="@dimen/mp_x_small"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStartTime"
+            app:layout_constraintLeft_toRightOf="@+id/tvFrom"
+            app:layout_constraintTop_toTopOf="@+id/tvStartTime"
+            tools:text="E6106" />
+
+        <TextView
+            android:id="@+id/tvStartTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/mp_x_small"
+            android:textColor="#000"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="11:20" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcvStop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/view"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:listitem="@layout/item_stop" />
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/destination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/mp_normal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailSection">
+
+        <TextView
+            android:id="@+id/tvEndTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/mp_x_small"
+            android:textColor="#000"
+            tools:text="11:20" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_destination_mark"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStartTime"
+            app:layout_constraintLeft_toRightOf="@+id/tvStartTime"
+            app:layout_constraintTop_toTopOf="@+id/tvStartTime"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mp_x_small"
+            android:layout_marginStart="@dimen/mp_x_small"
+            android:ellipsize="marquee"
+            android:gravity="center_vertical"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:maxWidth="@dimen/stop_name_max_width"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text="@string/destination"
+            android:textColor="#000"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStartTime"
+            app:layout_constraintLeft_toRightOf="@+id/imgFrom"
+            app:layout_constraintTop_toTopOf="@+id/tvStartTime" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<leo.me.la.finroute.customViews.InterceptTouchCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/mp_small">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/mp_small"
+                android:textColor="@color/primary_text"
+                android:textSize="16sp"
+                tools:text="18:55" />
+
+            <ImageView
+                android:id="@+id/imgTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tvFrom"
+                android:src="@drawable/ic_to"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tvTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imgTo"
+                android:padding="@dimen/mp_small"
+                android:textColor="@color/primary_text"
+                android:textSize="16sp"
+                tools:text="20:09" />
+
+            <TextView
+                android:id="@+id/tvTotalTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tvTo"
+                android:textColor="@color/secondary_text"
+                android:textSize="@dimen/small_text_size"
+                tools:text="(60 min)" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcvLeg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/mp_small"
+            android:paddingRight="@dimen/mp_small"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_transport" />
+
+        <RelativeLayout
+            android:id="@+id/additionalInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/separator"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/mp_small"
+                android:layout_marginRight="@dimen/mp_small"
+                android:layout_marginTop="@dimen/mp_x_small"
+                android:background="@color/primary" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/separator"
+                android:drawableLeft="@drawable/ic_money"
+                android:drawablePadding="@dimen/mp_x_small"
+                android:gravity="center_vertical"
+                android:padding="@dimen/mp_small"
+                android:textSize="@dimen/small_text_size"
+                tools:text="3.20 Euro" />
+
+            <TextView
+                android:id="@+id/tvWalk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/separator"
+                android:layout_toRightOf="@+id/tvPrice"
+                android:drawableLeft="@drawable/ic_walk"
+                android:drawablePadding="@dimen/mp_x_small"
+                android:gravity="center_vertical"
+                android:padding="@dimen/mp_small"
+                android:textSize="@dimen/small_text_size"
+                tools:text="348 m" />
+        </RelativeLayout>
+    </LinearLayout>
+</leo.me.la.finroute.customViews.InterceptTouchCardView>

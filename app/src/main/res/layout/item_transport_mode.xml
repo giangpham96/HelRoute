@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/mp_small"
+    android:layout_marginLeft="@dimen/mp_small"
+    android:layout_marginRight="@dimen/mp_small"
+    android:orientation="vertical"
+    tools:background="@color/cardview_dark_background">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/large_icon_size"
+        android:layout_height="@dimen/large_icon_size"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_marker_transport"
+        android:focusable="false"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/ic_bus_1" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/icon"
+        android:layout_toRightOf="@+id/icon"
+        android:focusable="false"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/mp_small"
+        android:paddingRight="@dimen/mp_small"
+        android:textColor="@color/cardview_light_background"
+        tools:text="Bus" />
+</RelativeLayout>
