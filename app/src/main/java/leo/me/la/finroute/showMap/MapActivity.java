@@ -89,6 +89,8 @@ public class MapActivity extends AppCompatActivity
         setContentView(R.layout.activity_map);
         long id = getIntent().getLongExtra(ITINERARY_ID, 0);
         itinerary = ItineraryHolder.getInstance().retrieve(id);
+        if (itinerary == null)
+            finish();
         legDataList = new ArrayList<>();
         circleList = new ArrayList<>();
         ButterKnife.bind(this);
