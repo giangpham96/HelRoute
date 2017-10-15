@@ -22,9 +22,21 @@ class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.AlertVH> {
     }
 
     @Override
+    public int getItemViewType(int position) {
+        String text = alerts.get(position).alertDescriptionText();
+        for (int i = 0; i < position; i++) {
+            if (alerts.get(i).alertDescriptionText().equals(text)) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    @Override
     public AlertAdapter.AlertVH onCreateViewHolder(ViewGroup parent, int viewType) {
+        int layoutId = (viewType == 0) ? R.layout.item_invisible : R.layout.item_alert;
         return new AlertVH(LayoutInflater.from(context)
-                .inflate(R.layout.item_alert, parent, false));
+                .inflate(layoutId, parent, false));
     }
 
     @Override
@@ -39,14 +51,27 @@ class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.AlertVH> {
 
     class AlertVH extends RecyclerView.ViewHolder {
         TextView tvAlert;
+        TextView tvTranslate;
 
         AlertVH(View itemView) {
             super(itemView);
             tvAlert = itemView.findViewById(R.id.tvAlert);
+            tvTranslate = itemView.findViewById(R.id.tvTranslate);
         }
 
         public void bind(AlertQuery.Alert alert) {
-            tvAlert.setText(alert.alertDescriptionText());
+            if (tvTranslate != null) {
+                tvTranslate.setVisibility(View.GONE);
+                for (AlertQuery.AlertDescriptionTextTranslation adtt : alert.alertDescriptionTextTranslations()) {
+                    if (adtt.language() != null && adtt.language().equals("en")) {
+                        tvTranslate.setVisibility(View.VISIBLE);
+                        tvTranslate.setText(adtt.text());
+                        break;
+                    }
+                }
+            }
+            if (tvAlert != null)
+                tvAlert.setText(alert.alertDescriptionText());
         }
     }
 }

@@ -87,6 +87,7 @@
             android:orientation="vertical"
             android:paddingLeft="@dimen/mp_normal"
             android:paddingRight="@dimen/mp_normal"
+            app:fastScrollEnabled="false"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             tools:listitem="@layout/item_leg_walk" />
     </LinearLayout>
