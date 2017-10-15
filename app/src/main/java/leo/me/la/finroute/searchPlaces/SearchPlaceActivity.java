@@ -2,6 +2,7 @@ package leo.me.la.finroute.searchPlaces;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
@@ -13,7 +14,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -52,10 +53,11 @@ import butterknife.OnTextChanged;
 import io.realm.RealmResults;
 import leo.me.la.finroute.R;
 import leo.me.la.finroute.http.apiModel.Feature;
+import leo.me.la.finroute.root.BaseActivity;
 
 import static leo.me.la.finroute.getRoutes.GetRoutesActivity.TOOLBAR_TITLE;
 
-public class SearchPlaceActivity extends AppCompatActivity implements SearchPlaceMVP.View,
+public class SearchPlaceActivity extends BaseActivity implements SearchPlaceMVP.View,
         OnSuccessListener<LocationSettingsResponse>,
         OnFailureListener {
     public static final String FEATURE = "feature.la.me.leo";
@@ -367,7 +369,27 @@ public class SearchPlaceActivity extends AppCompatActivity implements SearchPlac
     }
 
     private void requestLocationPermission() {
-        ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_INTENT_ID);
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)) {
+            // Show an explanation to the user *asynchronously* -- don't block
+            // this thread waiting for the user's response! After the user
+            // sees the explanation, try again to request the permission.
+            new AlertDialog.Builder(this)
+                    .setMessage(R.string.request_sms)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(SearchPlaceActivity.this,
+                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                    ACCESS_LOCATION_INTENT_ID);
+                        }
+                    }).setNegativeButton(android.R.string.cancel, null)
+                    .show();
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    ACCESS_LOCATION_INTENT_ID);
+        }
     }
 
     protected void createLocationRequest() {

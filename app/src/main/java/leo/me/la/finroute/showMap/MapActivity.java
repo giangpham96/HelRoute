@@ -15,7 +15,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
@@ -47,6 +46,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import leo.me.la.finroute.R;
 import leo.me.la.finroute.RouteQuery;
+import leo.me.la.finroute.root.BaseActivity;
 import leo.me.la.finroute.root.Utils;
 import leo.me.la.finroute.type.Mode;
 
@@ -54,7 +54,7 @@ import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_EXPANDED;
 import static leo.me.la.finroute.type.Mode.WALK;
 
-public class MapActivity extends AppCompatActivity
+public class MapActivity extends BaseActivity
         implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {

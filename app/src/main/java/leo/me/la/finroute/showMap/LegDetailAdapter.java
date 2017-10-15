@@ -26,11 +26,12 @@ import leo.me.la.finroute.RouteQuery;
 import leo.me.la.finroute.root.Utils;
 import leo.me.la.finroute.type.Mode;
 
-class LegDetailAdapter extends RecyclerView.Adapter<LegDetailAdapter.LegVH> implements StopVisibilityListener {
+class LegDetailAdapter extends RecyclerView.Adapter<LegDetailAdapter.LegVH> implements HolderAdapterBridge {
     private Context context;
     private List<RouteQuery.Leg> legs;
     private SparseBooleanArray state;
     private SparseArray<StopAdapter> childStopAdapters;
+    private RecyclerView recyclerView;
 
     LegDetailAdapter(Context context, List<RouteQuery.Leg> legs) {
         this.context = context;
@@ -39,6 +40,11 @@ class LegDetailAdapter extends RecyclerView.Adapter<LegDetailAdapter.LegVH> impl
         childStopAdapters = new SparseArray<>();
     }
 
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        this.recyclerView = recyclerView;
+    }
 
     @Override
     public int getItemViewType(int position) {
@@ -87,6 +93,12 @@ class LegDetailAdapter extends RecyclerView.Adapter<LegDetailAdapter.LegVH> impl
     @Override
     public void setChildAdapter(int position, StopAdapter adapter) {
         childStopAdapters.put(position, adapter);
+    }
+
+    @Override
+    public void requestLayout() {
+        if (recyclerView != null)
+            recyclerView.requestLayout();
     }
 
     static class LegVH extends RecyclerView.ViewHolder {
@@ -139,12 +151,12 @@ class LegDetailAdapter extends RecyclerView.Adapter<LegDetailAdapter.LegVH> impl
         TextView tvShowHide;
 
         private int position;
-        private StopVisibilityListener listener;
+        private HolderAdapterBridge bridge;
 
-        LegVH(View itemView, @NonNull StopVisibilityListener listener) {
+        LegVH(View itemView, @NonNull HolderAdapterBridge bridge) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            this.listener = listener;
+            this.bridge = bridge;
         }
 
         public void setPosition(int position) {
@@ -155,8 +167,8 @@ class LegDetailAdapter extends RecyclerView.Adapter<LegDetailAdapter.LegVH> impl
         @OnClick(R.id.tvShowHide)
         void onContentClick() {
             if (rcvStop != null && tvShowHide != null) {
-                listener.onVisibilityChange(position, !listener.currentVisibility(position));
-                if (listener.currentVisibility(position)) {
+                bridge.onVisibilityChange(position, !bridge.currentVisibility(position));
+                if (bridge.currentVisibility(position)) {
                     rcvStop.setVisibility(View.VISIBLE);
                     Animation slideDown = AnimationUtils.loadAnimation(itemView.getContext(),
                             R.anim.slide_down);
@@ -175,7 +187,8 @@ class LegDetailAdapter extends RecyclerView.Adapter<LegDetailAdapter.LegVH> impl
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
-                            listener.update(position);
+                            bridge.update(position);
+                            bridge.requestLayout();
                         }
 
                         @Override
@@ -296,16 +309,15 @@ class LegDetailAdapter extends RecyclerView.Adapter<LegDetailAdapter.LegVH> impl
 
         private void bindStops(List<RouteQuery.IntermediateStop> stops) {
             if (rcvStop != null && tvShowHide != null) {
-                if (listener.getChildAdapter(position) == null) {
-                    listener.setChildAdapter(position, new StopAdapter(itemView.getContext(), stops));
+                if (bridge.getChildAdapter(position) == null) {
+                    bridge.setChildAdapter(position, new StopAdapter(itemView.getContext(), stops));
                 }
-                rcvStop.swapAdapter(listener.getChildAdapter(position), true);
-//                rcvStop.setVisibility(View.GONE);
-                rcvStop.setVisibility(listener.currentVisibility(position) ? View.VISIBLE : View.GONE);
-                tvShowHide.setText(listener.currentVisibility(position)
+                rcvStop.swapAdapter(bridge.getChildAdapter(position), true);
+                rcvStop.setVisibility(bridge.currentVisibility(position) ? View.VISIBLE : View.GONE);
+                tvShowHide.setText(bridge.currentVisibility(position)
                         ? itemView.getContext().getString(R.string.hide)
                         : itemView.getContext().getString(R.string.show));
-                tvShowHide.setBackgroundResource(listener.currentVisibility(position) ? R.drawable.bg_hide : R.drawable.bg_show);
+                tvShowHide.setBackgroundResource(bridge.currentVisibility(position) ? R.drawable.bg_hide : R.drawable.bg_show);
             }
         }
 
@@ -338,22 +350,6 @@ class LegDetailAdapter extends RecyclerView.Adapter<LegDetailAdapter.LegVH> impl
             } else {
                 destination.setVisibility(View.GONE);
             }
-        }
-
-        private int getFromStopPosition(String code, List<RouteQuery.Stop> stops) {
-            for (int i = 0; i < stops.size(); i++) {
-                if (code.equals(stops.get(i).code()))
-                    return i;
-            }
-            return -1;
-        }
-
-        private int getToStopPosition(String code, List<RouteQuery.Stop> stops) {
-            for (int i = stops.size() - 1; i >= 0; i--) {
-                if (code.equals(stops.get(i).code()))
-                    return i;
-            }
-            return -1;
         }
     }
 }

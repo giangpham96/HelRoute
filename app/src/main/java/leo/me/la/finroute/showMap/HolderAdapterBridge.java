@@ -1,6 +1,6 @@
 package leo.me.la.finroute.showMap;
 
-interface StopVisibilityListener {
+interface HolderAdapterBridge {
     void onVisibilityChange(int position, boolean isShown);
 
     boolean currentVisibility(int position);
@@ -10,4 +10,6 @@ interface StopVisibilityListener {
     StopAdapter getChildAdapter(int position);
 
     void setChildAdapter(int position, StopAdapter adapter);
+
+    void requestLayout();
 }

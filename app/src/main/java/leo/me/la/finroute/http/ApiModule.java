@@ -8,8 +8,6 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import leo.me.la.finroute.type.CustomType;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,22 +17,24 @@ public class ApiModule {
     private final String BASE_PLACE_URL = "http://api.digitransit.fi/";
     private final String BASE_ROUTE_URL = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql";
 
+//    @Singleton
+//    @Provides
+//    OkHttpClient provideClient() {
+//
+//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//
+//        return new OkHttpClient.Builder().addInterceptor(interceptor).build();
+//    }
+
     @Singleton
     @Provides
-    OkHttpClient provideClient() {
-
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        return new OkHttpClient.Builder().addInterceptor(interceptor).build();
-    }
-
-    @Singleton
-    @Provides
-    Retrofit provideRetrofit(String baseURL, OkHttpClient client) {
+    Retrofit provideRetrofit(String baseURL
+//            , OkHttpClient client
+    ) {
         return new Retrofit.Builder()
                 .baseUrl(baseURL)
-                .client(client)
+//                .client(client)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -43,7 +43,9 @@ public class ApiModule {
     @Singleton
     @Provides
     GetPlaceApiService provideApiService() {
-        return provideRetrofit(BASE_PLACE_URL, provideClient()).create(GetPlaceApiService.class);
+        return provideRetrofit(BASE_PLACE_URL
+//                , provideClient()
+        ).create(GetPlaceApiService.class);
     }
 
     @Provides
@@ -63,7 +65,7 @@ public class ApiModule {
         };
         return ApolloClient.builder()
                 .serverUrl(BASE_ROUTE_URL)
-                .okHttpClient(provideClient())
+//                .okHttpClient(provideClient())
                 .addCustomTypeAdapter(CustomType.LONG, customTypeAdapter)
                 .build();
     }

@@ -2,7 +2,6 @@ package leo.me.la.finroute.showAlert;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -23,8 +22,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import leo.me.la.finroute.AlertQuery;
 import leo.me.la.finroute.R;
+import leo.me.la.finroute.root.BaseActivity;
 
-public class AlertActivity extends AppCompatActivity {
+public class AlertActivity extends BaseActivity {
     @Inject
     ApolloClient client;
     @BindView(R.id.rcvAlert)

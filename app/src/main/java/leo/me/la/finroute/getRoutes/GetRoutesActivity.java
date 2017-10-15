@@ -16,7 +16,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -31,6 +30,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -47,6 +53,7 @@ import leo.me.la.finroute.R;
 import leo.me.la.finroute.RouteQuery;
 import leo.me.la.finroute.customViews.CustomSeekBar;
 import leo.me.la.finroute.http.apiModel.Feature;
+import leo.me.la.finroute.root.BaseActivity;
 import leo.me.la.finroute.root.SharedPrefManager;
 import leo.me.la.finroute.root.Utils;
 import leo.me.la.finroute.searchPlaces.SearchPlaceActivity;
@@ -55,9 +62,10 @@ import leo.me.la.finroute.type.InputCoordinates;
 
 import static leo.me.la.finroute.searchPlaces.SearchPlaceActivity.FEATURE;
 
-public class GetRoutesActivity extends AppCompatActivity implements GetRoutesMVP.View {
+public class GetRoutesActivity extends BaseActivity implements GetRoutesMVP.View {
     public static final int REQUEST_ORIGIN = 0;
     public static final int REQUEST_DESTINATION = 1;
+    public static final long CACHE_STALE_TIME = 180000;
     public static final String TOOLBAR_TITLE = "toolbar.title.la.me.leo";
     IntentFilter timeIntentFilter;
     @Inject
@@ -171,10 +179,50 @@ public class GetRoutesActivity extends AppCompatActivity implements GetRoutesMVP
         ButterKnife.bind(this);
         setupBroadcastReceiver();
         initViews();
+        showLastUsedPlan();
+    }
+
+    private void showLastUsedPlan() {
+        long lastUsed = SharedPrefManager.readLastUsedTime();
+        if (System.currentTimeMillis() - lastUsed > CACHE_STALE_TIME) {
+            return;
+        }
+        long lastQueryTime = SharedPrefManager.readLastQueryTime();
+        calendar.setTimeInMillis(lastQueryTime);
+        displayTime();
+        displayDate();
+        readOrigin();
+        readDestination();
+        isArriveBy = SharedPrefManager.readLastQueryArriveMode();
+        TextView selected, unselected;
+        selected = isArriveBy ? tvArriving : tvLeaving;
+        unselected = isArriveBy ? tvLeaving : tvArriving;
+        Drawable background = ContextCompat.getDrawable(GetRoutesActivity.this, R.drawable.bg_selected);
+        int selectedColor = ContextCompat.getColor(GetRoutesActivity.this, R.color.accent);
+        int unselectedColor = ContextCompat.getColor(GetRoutesActivity.this, R.color.light_white);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            selected.setBackground(background);
+            unselected.setBackground(null);
+        } else {
+            selected.setBackgroundDrawable(background);
+            unselected.setBackgroundDrawable(null);
+        }
+        selected.setTextColor(selectedColor);
+        unselected.setTextColor(unselectedColor);
+        tvOrigin.setText((origin == null) ? getString(R.string.choose_origin) : origin.getProperties().getLabel());
+        tvDestination.setText((destination == null) ? getString(R.string.choose_destination) : destination.getProperties().getLabel());
+        presenter.loadResult();
     }
 
     @Override
     protected void onDestroy() {
+        if (origin != null && destination != null) {
+            SharedPrefManager.writeLastUsedTime();
+            SharedPrefManager.writeLastQueryTime(calendar.getTimeInMillis());
+            SharedPrefManager.writeLastArriveMode(isArriveBy);
+            saveOrigin();
+            saveDestination();
+        }
         presenter.close();
         unregisterReceiver(timeChangeReceiver);
         super.onDestroy();
@@ -568,5 +616,93 @@ public class GetRoutesActivity extends AppCompatActivity implements GetRoutesMVP
     @OnClick(R.id.btnLater)
     public void onLaterClick() {
         presenter.loadLater();
+    }
+
+    public void saveOrigin() {
+        if (origin == null)
+            return;
+        writeCache("origin", origin);
+    }
+
+    public void saveDestination() {
+        if (destination == null)
+            return;
+        writeCache("destination", destination);
+    }
+
+    public void readOrigin() {
+        origin = readCache("origin");
+    }
+
+    public void readDestination() {
+        destination = readCache("destination");
+    }
+
+    private void writeCache(String fileName, Feature feature) {
+        FileOutputStream fout = null;
+        ObjectOutputStream oos = null;
+        try {
+            File file = new File(getCacheDir(), fileName);
+            if (!file.createNewFile()) {
+                PrintWriter pw = new PrintWriter(file);
+                pw.close();
+            }
+            fout = new FileOutputStream(file);
+            oos = new ObjectOutputStream(fout);
+            oos.writeObject(feature);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fout != null) {
+                try {
+                    fout.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (oos != null) {
+                try {
+                    oos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private Feature readCache(String fileName) {
+        Feature feature = null;
+        FileInputStream fin = null;
+        ObjectInputStream ois = null;
+
+        try {
+
+            fin = new FileInputStream(new File(getCacheDir(), fileName));
+            ois = new ObjectInputStream(fin);
+            feature = (Feature) ois.readObject();
+
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+
+            if (fin != null) {
+                try {
+                    fin.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (ois != null) {
+                try {
+                    ois.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+        return feature;
     }
 }
