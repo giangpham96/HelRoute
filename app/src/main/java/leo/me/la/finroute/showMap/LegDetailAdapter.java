@@ -31,6 +31,7 @@ class LegDetailAdapter extends RecyclerView.Adapter<LegDetailAdapter.LegVH> impl
     private List<RouteQuery.Leg> legs;
     private SparseBooleanArray state;
     private SparseArray<StopAdapter> childStopAdapters;
+
     LegDetailAdapter(Context context, List<RouteQuery.Leg> legs) {
         this.context = context;
         this.legs = legs;
@@ -278,34 +279,25 @@ class LegDetailAdapter extends RecyclerView.Adapter<LegDetailAdapter.LegVH> impl
                         (leg.endTime() - leg.startTime()) / 1000) + ")";
             else
                 time = "";
-            if (leg.route() != null && leg.route().stops() != null) {
-                int from = 0, to = 0;
-                if (leg.from().stop() != null && leg.from().stop().code() != null)
-                    from = getFromStopPosition(leg.from().stop().code(), leg.route().stops());
-                if (leg.to().stop() != null && leg.to().stop().code() != null)
-                    to = getToStopPosition(leg.to().stop().code(), leg.route().stops());
-                if (from >= 0 && to >= 0 && Math.abs(to - from) > 1) {
-                    int numberOfStop = Math.abs(to - from) - 1;
-                    stops = numberOfStop + " " + itemView.getContext().getString(R.string.stop);
-                } else {
-                    stops = itemView.getContext().getString(R.string.no_stop);
-                }
-                bindStops(leg.route().stops(), from, to);
+            if (leg.intermediateStops() != null && leg.intermediateStops().size() > 0) {
+                stops = leg.intermediateStops().size() + " " + itemView.getContext().getString(R.string.stop);
+                bindStops(leg.intermediateStops());
             } else
                 stops = itemView.getContext().getString(R.string.no_stop);
             tvContent.setText(stops);
             tvDuration.setText(time);
-            if (tvShowHide != null && stops.equals(itemView.getContext().getString(R.string.no_stop))) {
+            if (tvShowHide != null && rcvStop != null && stops.equals(itemView.getContext().getString(R.string.no_stop))) {
                 tvShowHide.setVisibility(View.GONE);
+                rcvStop.setVisibility(View.GONE);
             } else if (tvShowHide != null && !stops.equals(itemView.getContext().getString(R.string.no_stop))) {
                 tvShowHide.setVisibility(View.VISIBLE);
             }
         }
 
-        private void bindStops(List<RouteQuery.Stop> stops, int from, int to) {
+        private void bindStops(List<RouteQuery.IntermediateStop> stops) {
             if (rcvStop != null && tvShowHide != null) {
                 if (listener.getChildAdapter(position) == null) {
-                    listener.setChildAdapter(position, new StopAdapter(itemView.getContext(), stops, from, to));
+                    listener.setChildAdapter(position, new StopAdapter(itemView.getContext(), stops));
                 }
                 rcvStop.swapAdapter(listener.getChildAdapter(position), true);
 //                rcvStop.setVisibility(View.GONE);
