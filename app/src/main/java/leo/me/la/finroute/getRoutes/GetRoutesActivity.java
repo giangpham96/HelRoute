@@ -334,7 +334,6 @@ public class GetRoutesActivity extends BaseActivity implements GetRoutesMVP.View
         csbWalkReluctance = new CustomSeekBar(this, 60, Color.WHITE, 0,
                 new String[]{"Prefer walking", "Avoid walking"});
         csbWalkReluctance.addSeekBar(sbWalkReluctance);
-        csbWalkReluctance.setProgress(SharedPrefManager.readMaxTransfer());
         csbWalkReluctance.setProgress(SharedPrefManager.readWalkReluctance());
 
         //seek bar for walking speed

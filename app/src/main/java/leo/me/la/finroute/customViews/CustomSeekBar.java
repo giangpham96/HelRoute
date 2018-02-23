@@ -76,7 +76,6 @@ public class CustomSeekBar {
             textView.setTextSize(10f);
             textView.setGravity(Gravity.START);
             labelContainer.addView(textView);
-            textView.setLayoutParams(getLayoutParams(1f));
             textView.setLayoutParams((i == labels.length - 1) ? getLayoutParams(0.0f) : getLayoutParams(1.0f));
         }
     }

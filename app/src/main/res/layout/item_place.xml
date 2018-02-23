@@ -24,7 +24,6 @@
         android:layout_marginLeft="@dimen/mp_normal"
         android:layout_toRightOf="@+id/icon"
         android:ellipsize="marquee"
-        android:maxLines="1"
         android:singleLine="true"
         android:text="@string/my_location"
         android:textColor="@color/primary_text" />

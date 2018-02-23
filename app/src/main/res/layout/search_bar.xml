@@ -64,9 +64,9 @@
         android:background="@drawable/bg_green_search_view"
         android:ellipsize="marquee"
         android:gravity="center_vertical"
-        android:maxLines="1"
         android:paddingLeft="@dimen/mp_small"
         android:paddingRight="@dimen/mp_small"
+        android:singleLine="true"
         android:text="@string/choose_origin"
         android:textColor="@color/primary_dark"
         tools:text="Siltakuja 2" />
@@ -82,9 +82,9 @@
         android:background="@drawable/bg_green_search_view"
         android:ellipsize="marquee"
         android:gravity="center_vertical"
-        android:maxLines="1"
         android:paddingLeft="@dimen/mp_small"
         android:paddingRight="@dimen/mp_small"
+        android:singleLine="true"
         android:text="@string/choose_destination"
         android:textColor="@color/primary_dark"
         tools:text="Vanha Maantie 6" />

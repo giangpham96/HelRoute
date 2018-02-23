@@ -27,7 +27,6 @@
         android:focusableInTouchMode="true"
         android:gravity="center_vertical"
         android:marqueeRepeatLimit="marquee_forever"
-        android:maxLines="1"
         android:maxWidth="@dimen/stop_name_max_width"
         android:scrollHorizontally="true"
         android:singleLine="true"
